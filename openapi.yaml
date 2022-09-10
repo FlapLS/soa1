@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info: 
+  title: "FirstLab SAO"
+  version: 1.0.0
+
+components:
+  schemas:
+    SpaceMarin:
+      required:
+        - id
+        - name
+        - cordinates 
+        - creationDate
+        - weaponType
+        - meleeWeapon
+        - chapter
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 0
+          example: 10
+        name:
+          type: string
+          example: snoopie
+        coordinates:
+          $ref: "#/components/schemas/Coordinates"
+        creationDate:
+          $ref: "#/components/schemas/ZonedDateTime"
+        health:
+          type: integer
+          format: int32
+          minimum: 0
+          example: 1000
+        category:
+          $ref: "#/components/schemas/AstartesCategory"
+        weaponType:
+          $ref: "#/components/schemas/Weapon"
+        meleeWeapon:
+          $ref: "#/components/schemas/MeleeWeapon"
+        chapter:
+         $ref: "#/components/schemas/Chapter"
+         
+    Coordinates:
+      required:
+        - x
+        - y
+      type: object
+      properties:
+        x:
+          type: integer
+          format: int64
+          example: 1
+        y:
+          type: integer
+          format: int32
+          example: 12
+    
+    ZonedDateTime:
+      type: object
+      properties:
+        time:
+          type: string
+          example: "12.04.1935"
+          
+    Chapter:
+      required:
+        - name
+        - world
+      type: object
+      properties:
+        name:
+          type: string
+          example: snoopie
+        parentLegion:
+          type: string
+          example: soa
+        marinesCount:
+          type: integer
+          format: int64
+          minimum: 0
+          example: 1000
+        world :
+          type: string
+          example: snoopie
+          
+    AstartesCategory:
+      type: string
+      enum:
+        - DREADNOUGHT
+        - AGGRESSOR
+        - SUPPRESSOR
+      example: AGGRESSOR
+      
+    Weapon:
+      type: string
+      enum:
+        - BOLTGUN
+        - MELTAGUN
+        - MISSILE_LAUNCHER
+        
+    MeleeWeapon:
+      type: string
+      enum:
+      - CHAIN_AXE
+      - MANREAPER
+      - LIGHTING_CLAW
+      - POWER_FIST
